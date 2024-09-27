@@ -1,5 +1,4 @@
-# 2024_wt_sa_ibrahim
----
+
 
 # Richard Bellman
 -   26 .srpna 1920 New York, USA – 19. března 1984 Los Angeles, Kalifornie, USA
