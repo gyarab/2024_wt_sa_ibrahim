@@ -5,7 +5,9 @@ let karty = [
     { src: 'https://placecats.com/millie/100/100', altSrc: 'https://placekitten.com/101/101' },
     { src: 'https://placecats.com/neo/100/100', altSrc: 'https://placekitten.com/102/102' },
     { src: 'https://placecats.com/neo_2/100/100', altSrc: 'https://placekitten.com/103/103' },
-    { src: 'https://placecats.com/millie_neo/100/100', altSrc: 'https://placekitten.com/104/104' }
+    { src: 'https://placecats.com/millie_neo/100/100', altSrc: 'https://placekitten.com/104/104' },
+    { src : 'https://placecats.com/g/300/200'}
+    
 ];
 
 const cardBackSrc = 'pokemon-card-back.png';
@@ -14,6 +16,7 @@ let cards = [...karty, ...karty].sort(() => Math.random() - 0.5);
 
 let firstCard = null;
 let secondCard = null;
+let remainingPairs = karty.length; // Count of pairs to match
 
 function createGrid() {
     let container = document.getElementById('pexeso');
@@ -55,18 +58,24 @@ function checkMatch() {
         setTimeout(() => {
             firstCard.dataset.matched = "true";
             secondCard.dataset.matched = "true";
-            resetSelection();
+            remainingPairs--;
+
+            if (remainingPairs === 0) {
+                setTimeout(() => alert('Congratulations! You matched all the cards!'), 500);
+            }
+
+            reset();
         }, 500);
     } else {
         setTimeout(() => {
             firstCard.src = cardBackSrc;
             secondCard.src = cardBackSrc;
-            resetSelection();
+            reset();
         }, 1000);
     }
 }
 
-function resetSelection() {
+function reset() {
     firstCard = null;
     secondCard = null;
 }
